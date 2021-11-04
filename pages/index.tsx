@@ -3,14 +3,25 @@ import { AwesomeLink } from '../components/AwesomeLink';
 import { gql, useQuery } from '@apollo/client';
 
 const AllLinksQuery = gql`
-  query {
-    links {
-      id
-      title
-      url
-      description
-      imageUrl
-  }
+  query allLinksQuery($first: Int, $after: String) {
+    links(first: $first, after: $after) {
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      edges {
+        cursor
+        node {
+          index
+          imageUrl
+          url
+          title
+          category
+          description
+          id
+        }
+      }
+    }
   }
 `;
 

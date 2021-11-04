@@ -2,18 +2,34 @@
 ### Do not make changes to this file directly
 
 
+type Edges {
+  cursor: String
+  node: Link
+}
+
 type Link {
   category: String
   description: String
   id: String
   imageUrl: String
+  index: Int
   title: String
   url: String
-  users: [User]
+  userId: Int
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean
 }
 
 type Query {
-  links: [Link]!
+  links(after: String, first: Int): Response
+}
+
+type Response {
+  edges: [Edges]
+  pageInfo: PageInfo
 }
 
 enum Role {
