@@ -11,6 +11,7 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.16",
     "@prisma/client": "^3.4.0",
     "apollo-server-micro": "^3.4.0",
     "graphql": "^15.7.2",
