@@ -28,7 +28,7 @@ model User {
   image String?
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
-  favorites Link[]
+  bookmarks Link[]
   role Role @default(USER)
 }
 
