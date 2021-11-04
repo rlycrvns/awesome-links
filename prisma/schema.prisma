@@ -1,32 +1,17 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id String @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  email String @unique
-  image String?
-  role Role @default(USER)
-  bookmarks Link[]
-}
-
-enum Role {
-  ADMIN
-  USER
+generator client {
+  provider = "prisma-client-js"
 }
 
 model Link {
   id String @id @default(uuid())
+  index Int @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   title String
@@ -36,3 +21,20 @@ model Link {
   category String
   users User[]
 }
+
+model User {
+  id String @id @default(uuid())
+  email String @unique
+  image String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  favorites Link[]
+  role Role @default(USER)
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+
